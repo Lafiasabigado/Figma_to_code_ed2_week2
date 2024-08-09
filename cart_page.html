@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+  <script src="https://unpkg.com/vue@3"></script>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="node_modules/aos/dist/aos.css">
+  <title>Cart Page</title>
+</head>
+<body>
+  <div class="before-header py-2">
+    <p style="color: white;" class="text-center">Sign up and get 20% off for all new arrivals collections</p>
+  </div>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container">
+      <div class="container-fluid">
+        <button class="navbar-toggler order-lg-3" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="home_page.html" class="navbar-brand mx-auto order-lg-2"><img src="assets/images/BALLAMAS.svg" alt="Logo"></a>
+        <div class="d-flex align-items-center order-lg-1">
+          <a class="nav-link" href="#"><i class="bi bi-search text-dark"></i></a>
+          <a class="nav-link d-lg-none" href="cart_page.html"><i class="text-dark bi bi-basket3"></i></a>
+        </div>
+        <div class="collapse navbar-collapse justify-content-between text-md-center" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="home_page.html">Men <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="home_page.html">Women</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="home_page.html">Kids</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="home_page.html">Collection</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active ml-2">
+              <a class="nav-link" href="home_page.html">Shop <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"><i class="bi bi-person"></i> Account</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cart_page.html">Cart (0)</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-lg-none" href="#">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-lg-none" href="contact.html">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header><br><br><br>
+  <div class="container">
+    <div class="row">
+      <!-- Première Section -->
+      <div class="col-12 col-lg-9 col-md-6">
+        <div class="row align-items-center">
+          <div class="col-6">
+            <h3 class="discover fw-bold">Cart(3)</h3>
+          </div>
+          <div class="col-6 d-flex justify-content-end">
+            <div class="col-12 col-lg-4 col-md-10 col-sm-6 clear d-inline-flex align-items-center p-2 bg-light">
+              <i class="bi bi-trash3 me-2 bg-light"></i>
+              <p class="summer bg-dark-grey mb-0">Clear Cart</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row mt-4">
+          <div class="col-5 col-md-6">
+            <h5 class="bg-dark-grey summer">Product</h5>
+          </div>
+          <div class="col-4 col-md-3">
+            <h5 class="bg-dark-grey summer">Quantity</h5>
+          </div>
+          <div class="col-3 col-md-3">
+            <h5 class="bg-dark-grey summer">Price</h5>
+          </div>
+        </div>
+        <hr>
+  
+        <!-- Product 1 -->
+        <div class="row align-items-center my-3">
+          <div class="col-5 col-md-6 p-2">
+            <div class="row align-items-center">
+              <div class="col-4 col-md-3">
+                <img src="assets/images/black_man.svg" alt="" class="img-fluid image">
+              </div>
+              <div class="col-8 col-md-9">
+                <p class="fw-bold mb-1">T-Shirt</p>
+                <p class="text-muted mb-1">Green - Large</p>
+                <p class="fw-bold mb-0">$87</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 col-md-3">
+            <div class="d-flex align-items-center justify-content-between bg-light p-2" style="border-radius: 40px;">
+              <i class="bi bi-dash-circle"></i>
+              <p class="summer bg-dark-grey mb-0 mx-2">2</p>
+              <i class="bi bi-plus-circle"></i>
+              <div class="ms-3 p-2 rounded">
+                <i class="bi bi-trash3"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 col-md-3 text-end">
+            <h4 class="fw-bold">$174.00</h4>
+          </div>
+        </div>
+        <hr>
+  
+        <!-- Product 2 -->
+        <div class="row align-items-center my-3">
+          <div class="col-5 col-md-6 p-2">
+            <div class="row align-items-center">
+              <div class="col-4 col-md-3">
+                <img src="assets/images/JACKET.svg" alt="" class="img-fluid image">
+              </div>
+              <div class="col-8 col-md-9">
+                <p class="fw-bold mb-1">Men's Dri-FIT Golf Jacket</p>
+                <p class="text-muted mb-1">Ocean - Large</p>
+                <p class="fw-bold mb-0">$100</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 col-md-3">
+            <div class="d-flex align-items-center justify-content-between bg-light p-2" style="border-radius: 40px;">
+              <i class="bi bi-dash-circle"></i>
+              <p class="summer bg-dark-grey mb-0 mx-2">1</p>
+              <i class="bi bi-plus-circle"></i>
+              <div class="ms-3 bg-light p-2 rounded">
+                <i class="bi bi-trash3"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 col-md-3 text-end">
+            <h4 class="fw-bold">$100.00</h4>
+          </div>
+        </div>
+        <hr>
+  
+        <!-- Product 3 -->
+        <div class="row align-items-center my-3">
+          <div class="col-5 col-md-6 p-2">
+            <div class="row align-items-center">
+              <div class="col-4 col-md-3">
+                <img src="assets/images/JORDAN.svg" alt="" class="img-fluid image">
+              </div>
+              <div class="col-8 col-md-9">
+                <p class="fw-bold mb-1">Tatum 2 "Red Cement"</p>
+                <p class="text-muted mb-1">Size: 15</p>
+                <p class="fw-bold mb-0">$125</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 col-md-3">
+            <div class="d-flex align-items-center justify-content-between bg-light p-2" style="border-radius: 40px;">
+              <i class="bi bi-dash-circle"></i>
+              <p class="summer bg-dark-grey mb-0 mx-2">2</p>
+              <i class="bi bi-plus-circle"></i>
+              <div class="ms-3 bg-light p-2 rounded">
+                <i class="bi bi-trash3"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 col-md-3 text-end">
+            <h4 class="fw-bold">$250.00</h4>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Nouvelle Section -->
+      <div class="col-12 col-lg-3 col-md-6 mt-4 mt-md-0">
+        <div class="p-3 bg-light rounded">
+          <h4 class="fw-bold mb-3 archivo" style="font-weight: 600;">Order Summary</h4>
+          <p class="bg-dark-grey">Subtotal:  $524.00</p>
+          <p class="bg-dark-grey">Discount:  $00.00</p><hr>
+          <h5 class="font-weight-bold">Order Total:    $524.00</h5>
+          <button class="btn btn-dark mt-3 w-100">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+  
+  
+  <footer class="text-light p-5">
+    <div class="row p-3">
+      <div class="col-12 col-lg-6 col-md-6 col-sm-4 p-2">
+        <div class="">
+          <div class="">
+            <img src="assets/images/BALLAMAS (1).svg" alt="" class="img-fluid p-2">
+            <p class="subscribe p-2">Subscribe to our newsletter  for upcoming products and best discount for all items</p>
+            <div class="">
+              <div class="row">
+                <div class="form-group py-2">
+                  <input type="text" class="form-item email p-2" placeholder="Your email">
+                  <button class="btn bouton">Subscribe</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 col-md-6 col-sm-4 p-2">
+        <div class="row justify-content-end">
+          <div class="col-4">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link subscribe" style="color: white; font-weight: 600;" href="#">Product<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">Jacket</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">T-Shirt</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">Jacket</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">Shoes</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">Sunglasses</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-4">
+              <ul class="navbar-nav ">
+                <li class="nav-item active">
+                  <a class="nav-link subscribe" style="color: white; font-weight: 600;" href="#">Categories<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">Man</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">Woman</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">Kids</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">Gift</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">New arrival</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-4">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" style="color: white; font-weight: 600;" href="#">Our Social Media<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">Instagram</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">Facebook</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">You Tube</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link subscribe" href="#">X</a>
+                </li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center ">© BALLAMAS 2024 by waris</div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="node_modules/aos/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

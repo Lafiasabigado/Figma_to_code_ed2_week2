@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/chillax');
+
+.before-header{
+  background-color: black;
+  font-family: 'Archivo', sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+body {
+    background-color: white;                                           
+}
+
+.nav {
+  background-color: white;
+}
+
+.navbar .navbar-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 991.98px) {
+  .navbar .navbar-brand {
+    position: relative;
+    left: auto;
+    transform: none;
+    margin: 0 auto;
+  }
+}
+
+.bouton {
+  border-radius: 20px;
+  background-color: white;
+}
+
+.bring-section {
+  border-radius: 30px;
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  padding: 50px;
+}
+
+.discover {
+  font-family: 'Chillax', sans-serif;
+}
+
+.shirt {
+  border: 1px solid black;
+  border-radius: 30px;
+}
+
+.shirt-section {
+  border-radius: 30px;
+}
+
+.summer {
+  font-family: 'Archivo', sans-serif;
+}
+
+.bg-dark-grey {
+  color: #7e7e7e;
+  font-family: 'Archivo', sans-serif;
+}
+
+.view-more {
+  border: 1px solid black;
+  border-radius: 30px;
+  display: inline-block;
+  cursor: pointer; 
+  margin-top: 20px;
+}
+
+.categorie {
+  cursor: pointer; 
+}
+
+.image-section {
+  border-radius: 30px;
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  padding: 75px;
+  height: 50vh;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bouton-section {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Pour aligner le bouton en bas */
+  height: 300px;
+}
+
+footer{
+  background-color: black;
+  color: white;
+}
+
+.subscribe{
+  color: #c3c3c3;
+}
+
+.email {
+   background-color: black;
+   border-radius: 20px;
+   color: white;
+}
+
+
+/*PRODUCT DETAILS STYLE */
+
+.product-img {
+  border-radius: 30px;
+}
+.b-green {
+  background-color: #2D5C43;
+  border-radius: 100px;
+  padding: 10px;
+  border-color: #e5e5e5;
+}
+
+.b-purple {
+  background-color: #393158;
+  border-radius: 100px;
+  padding: 10px;
+  border-style: none;
+}
+
+.b-ocean {
+  background-color: #2A5259;
+  border-radius: 100px;
+  padding: 10px;
+  border-style: none;
+}
+
+.b-olive {
+  background-color: #706947;
+  border-radius: 100px;
+  padding: 10px;
+  border-style: none;
+}
+
+.shirtsize {
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.try{
+  opacity: 1px;
+}
+
+.clear {
+  border: 1px solid black;
+  border-radius: 30px;
+  display: inline-flex;
+  cursor: pointer;
+  font-family: 'Archivo', sans-serif;
+  border-style: none;
+  width: 25%; 
+}
+
+.image {
+  border-radius: 20px;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  transform: scale(2.0);
+  background-color: black;
+}
+
+.custom-radio .custom-control-label::before {
+  transform: scale(2.0); 
+}
+
+input {
+  border-radius: 30px;
+}
