@@ -1,4 +1,14 @@
 {
+  "name": "Figma_to_code_edition2_week2",
+  "version": "1.0.0",
+  "description": "Website for shopping",
+  "main": "home_page.html",
+  "scripts": {
+    "start": "node index.js",
+    "build": "next build",
+    "dev": "next dev" },
+
+
   "dependencies": {
     "aos": "^2.3.4",
     "axios": "^1.7.3",
