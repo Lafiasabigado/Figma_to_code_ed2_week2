@@ -1,8 +1,12 @@
 {
-    "builds": [
+    "routes": [
+      {
+        "src": "/",
+        "dest": "/"
+      },
       {
         "src": "home_page.html",
-        "use": "@vercel/static"
+        "dest": "/"
       }
     ]
   }
