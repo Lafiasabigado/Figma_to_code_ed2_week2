@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "Website for shopping",
   "main": "home_page.html",
-  "scripts": {
-    "start": "node index.js",
-    "build": "next build",
-    "dev": "next dev" },
-
 
   "dependencies": {
     "aos": "^2.3.4",
