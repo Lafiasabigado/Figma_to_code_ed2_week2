@@ -158,9 +158,13 @@ footer{
   border-radius: 20px;
 }
 
-.try{
-  opacity: 1px;
+
+@media (max-width:768px) {
+  .try{
+    flex-wrap: nowrap;
+  }
 }
+
 
 .clear {
   border: 1px solid black;
