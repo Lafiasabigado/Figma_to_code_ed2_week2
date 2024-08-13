@@ -64,72 +64,33 @@
       </div>
     </nav>
   </header><br><br><br>
-  <div class="container">
-    <h2 class="discover" style="font-weight: 600;">Checkout</h2>
-  </div><br>
-  <div class="container">
-    <div class="row">
+  <div id="app">
+    <div class="container">
+      <h2 class="discover" style="font-weight: 600;">Checkout</h2>
+    </div><br>
+    <div class="container">
+      <div class="row">
         <!-- Section "Your Order" -->
         <div class="col-12 col-md-6 col-lg-8">
-            <h4 class="summer my-3" style="font-weight: 600;">Your Order</h4>
-            <p>By placing your order, you agree to Ballamas <a href="">Privacy</a> and <a href="">Policy.</a></p>
+          <h4 class="summer my-3" style="font-weight: 600;">Your Order</h4>
+          <p>By placing your order, you agree to Ballamas <a href="">Privacy</a> and <a href="">Policy.</a></p>
 
-            <!-- First Order Item -->
-            <div class="row align-items-center my-3">
-                <div class="col-5 col-md-6 p-2">
-                    <div class="row align-items-center">
-                        <div class="col-4 col-md-3">
-                            <img src="assets/images/black_man.svg" alt="" class="img-fluid image">
-                        </div>
-                        <div class="col-8 col-md-9">
-                            <p class="fw-bold mb-1">T-Shirt</p>
-                            <p class="text-muted mb-1">Green - Large</p>
-                            <p class="fw-bold mb-0">$87</p>
-                        </div>
-                    </div>
-                </div>
+          <div v-for="item in cartItems" :key="item.id" class="row align-items-center my-3">
+            <div class="col-5 col-md-6 p-2">
+              <div class="row align-items-center">
                 <div class="col-4 col-md-3">
-                    <h4 class="fw-bold">$174.00</h4>
+                  <img :src="item.image" alt="" class="img-fluid image">
                 </div>
+                <div class="col-8 col-md-9">
+                  <p class="fw-bold mb-1">{{ item.name }}</p>
+                  <p class="text-muted mb-1">Color: Green - Size: Large</p>
+                </div>
+              </div>
             </div>
-
-            <!-- Second Order Item -->
-            <div class="row align-items-center my-3">
-                <div class="col-5 col-md-6 p-2">
-                    <div class="row align-items-center">
-                        <div class="col-4 col-md-3">
-                            <img src="assets/images/JACKET.svg" alt="" class="img-fluid image">
-                        </div>
-                        <div class="col-8 col-md-9">
-                            <p class="fw-bold mb-1">Men's Dri-FIT Golf Jacket</p>
-                            <p class="text-muted mb-1">Ocean - Large</p>
-                            <p class="fw-bold mb-0">$100</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 col-md-3 text-end">
-                    <h4 class="fw-bold">$100.00</h4>
-                </div>
+            <div class="col-4 col-md-3">
+              <h4 class="fw-bold">${{ item.price }}</h4>
             </div>
-
-            <!-- Third Order Item -->
-            <div class="row align-items-center my-3">
-                <div class="col-5 col-md-6 p-2">
-                    <div class="row align-items-center">
-                        <div class="col-4 col-md-3">
-                            <img src="assets/images/JORDAN.svg" alt="" class="img-fluid image">
-                        </div>
-                        <div class="col-8 col-md-9">
-                            <p class="fw-bold mb-1">Tatum 2 "Red Cement"</p>
-                            <p class="text-muted mb-1">Size: 15</p>
-                            <p class="fw-bold mb-0">$125</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 col-md-3 text-end">
-                    <h4 class="fw-bold">$250.00</h4>
-                </div>
-            </div>
+          </div>
 
             <!-- Discount Code Section -->
             <p class="summer my-3">Discount Code</p>
@@ -141,36 +102,15 @@
             <!-- Signup Section -->
             <div>
                 <p>New customer? <a href="">Signup</a> <span class="bg-dark-grey">to get better offer</span></p>
-            </div>
+            </div><br><br>
 
-            <!-- Subtotal and Discount -->
             <div class="row align-items-center my-3">
-                <div class="col-5 col-md-6 p-2">
-                    <h4 class="bg-dark-grey">Subtotal</h4>
-                </div>
-                <div class="col-4 col-md-3">
-                    <h4 class="bg-dark-grey">$524.00</h4>
-                </div>
-            </div>
-            <div class="row align-items-center my-3">
-                <div class="col-5 col-md-6 p-2">
-                    <h4 class="bg-dark-grey">Discount</h4>
-                </div>
-                <div class="col-4 col-md-3">
-                    <h4 class="bg-dark-grey">$0</h4>
-                </div>
-            </div>
-            <hr>
-            <!-- Order Total -->
-            <div class="row align-items-center my-3">
-                <div class="col-5 col-md-6 p-2">
-                    <h4 class="font-weight-bold">Order Total</h4>
-                </div>
-                <div class="col-4 col-md-3">
-                    <h5 class="font-weight-bold">$524.00</h5>
-                </div>
-            </div>
-            <br><br>
+              <div class="p-3">
+                <h4 class="bg-dark-grey">Subtotal:  ${{ cartSubtotal }}
+                <h4 class="bg-dark-grey">Discount:  ${{ discount }}</h4><hr>
+                <h5 class="font-weight-bold">Order Total:    ${{ cartTotal }}</h5>
+              </div>
+            </div><br><br>
 
             <!-- Shipping Method -->
             <h5 class="summer" style="font-weight: 600;">Shipping method</h5>
@@ -259,23 +199,24 @@
           </div>
     
           <h4 class="summer py-2">Select payment method</h2>
-          <div class="form-group">
-            <div class="position-relative">
-              <input type="text" class="form-control p-3" id="debitCredit" placeholder="Debit/Credit Card" style="border-radius: 30px; padding-right: 40px;" required>
-              <i class="bi bi-credit-card" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); pointer-events: none;"></i>
+          <div class="row">
+            <div class="col m-2" style="border: 1px solid black;border-radius: 20px;">
+              <div class="position-relative">
+                <i class="bi bi-credit-card"></i>
+                <p class="summer">Deb/Cre Card</p>
+              </div>
+            </div>
+            <div class="col m-2" style="border: 1px solid black;border-radius: 20px;">
+              <div class="position-relative">
+                <i class="bi bi-bank"></i>
+                <p class="summer">Virtual Account</p>
+              </div>
             </div>
           </div>
           
           <div class="form-group">
             <div class="position-relative">
-              <input type="text" class="form-control p-3" id="virtualAccount" placeholder="Virtual Account Number" style="border-radius: 30px; padding-right: 40px;" required>
-              <i class="bi bi-bank" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); pointer-events: none;"></i>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <div class="position-relative">
-              <input type="text" class="form-control p-3" id="virtualAccount" placeholder="Card number" style="border-radius: 30px; padding-right: 40px;" required>
+              <input type="text" class="form-control p-3" id="cardnumber" placeholder="Card number" style="border-radius: 30px; padding-right: 40px;" required>
               <i class="bi bi-lock" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); pointer-events: none;"></i>
             </div>
           </div>
@@ -385,6 +326,35 @@
     </div>
     <div class="text-center ">© BALLAMAS 2024 by waris</div>
   </footer>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          cartItems: [],
+          cartSubtotal: 0,
+          discount: 0,
+          cartTotal: 0
+        };
+      },
+      methods: {
+        calculateTotals() {
+          this.cartSubtotal = this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+          this.cartTotal = this.cartSubtotal - this.discount;
+      },
+    },
+      computed: {
+        totalAmount() {
+          return this.cartItems.reduce((total, item) => total + item.totalPrice, 0);
+        }
+      },
+      mounted() {
+        this.cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        this.calculateTotals();
+      }
+    });
+
+    app.mount('#app');
+  </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

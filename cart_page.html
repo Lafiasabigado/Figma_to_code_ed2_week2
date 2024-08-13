@@ -64,22 +64,22 @@
       </div>
     </nav>
   </header><br><br><br>
-  <div class="container">
+  <div id="cartApp" class="container mt-4">
     <div class="row">
       <!-- Première Section -->
       <div class="col-12 col-lg-9 col-md-6">
         <div class="row align-items-center">
           <div class="col-6">
-            <h3 class="discover fw-bold">Cart(3)</h3>
+            <h3 class="discover fw-bold">Cart({{ cartItems.length }})</h3>
           </div>
           <div class="col-6 d-flex justify-content-end">
-            <div class="col-12 col-lg-4 col-md-10 col-sm-6 clear d-inline-flex align-items-center p-2 bg-light">
+            <div class="col-12 col-lg-4 col-md-10 col-sm-6 clear d-inline-flex align-items-center p-2 bg-light" @click="clearCart">
               <i class="bi bi-trash3 me-2 bg-light"></i>
               <p class="summer bg-dark-grey mb-0">Clear Cart</p>
             </div>
           </div>
         </div>
-  
+
         <div class="row mt-4">
           <div class="col-5 col-md-6">
             <h5 class="bg-dark-grey summer">Product</h5>
@@ -92,110 +92,52 @@
           </div>
         </div>
         <hr>
-  
-        <!-- Product 1 -->
-        <div class="row align-items-center my-3">
-          <div class="col-5 col-md-6 p-2">
-            <div class="row align-items-center">
-              <div class="col-4 col-md-3">
-                <img src="assets/images/black_man.svg" alt="" class="img-fluid image">
-              </div>
-              <div class="col-8 col-md-9">
-                <p class="fw-bold mb-1">T-Shirt</p>
-                <p class="text-muted mb-1">Green - Large</p>
-                <p class="fw-bold mb-0">$87</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-4 col-md-3">
-            <div class="d-flex align-items-center justify-content-between bg-light p-2" style="border-radius: 40px;">
-              <i class="bi bi-dash-circle"></i>
-              <p class="summer bg-dark-grey mb-0 mx-2">2</p>
-              <i class="bi bi-plus-circle"></i>
-              <div class="ms-3 p-2 rounded">
-                <i class="bi bi-trash3"></i>
+
+        <!-- Products List -->
+        <div v-for="(item, index) in cartItems" :key="index">
+          <div class="row align-items-center my-3">
+            <div class="col-5 col-md-6 p-2">
+              <div class="row align-items-center">
+                <div class="col-4 col-md-3">
+                  <img :src="item.image" alt="" class="img-fluid image">
+                </div>
+                <div class="col-8 col-md-9">
+                  <p class="fw-bold mb-1">{{ item.name }}</p>
+                  <p class="text-muted mb-1">{{ item.description }}</p>
+                  <p class="fw-bold mb-0">${{ item.price }}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-3 col-md-3 text-end">
-            <h4 class="fw-bold">$174.00</h4>
-          </div>
-        </div>
-        <hr>
-  
-        <!-- Product 2 -->
-        <div class="row align-items-center my-3">
-          <div class="col-5 col-md-6 p-2">
-            <div class="row align-items-center">
-              <div class="col-4 col-md-3">
-                <img src="assets/images/JACKET.svg" alt="" class="img-fluid image">
-              </div>
-              <div class="col-8 col-md-9">
-                <p class="fw-bold mb-1">Men's Dri-FIT Golf Jacket</p>
-                <p class="text-muted mb-1">Ocean - Large</p>
-                <p class="fw-bold mb-0">$100</p>
+            <div class="col-4 col-md-3">
+              <div class="d-flex align-items-center justify-content-between bg-light p-2" style="border-radius: 40px;">
+                <i class="bi bi-dash-circle" @click="decreaseQuantity(index)"></i>
+                <p class="summer bg-dark-grey mb-0 mx-2">{{ item.quantity }}</p>
+                <i class="bi bi-plus-circle" @click="increaseQuantity(index)"></i>
+                <div class="ms-3 p-2 rounded">
+                  <i class="bi bi-trash3" @click="removeItem(index)"></i>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-4 col-md-3">
-            <div class="d-flex align-items-center justify-content-between bg-light p-2" style="border-radius: 40px;">
-              <i class="bi bi-dash-circle"></i>
-              <p class="summer bg-dark-grey mb-0 mx-2">1</p>
-              <i class="bi bi-plus-circle"></i>
-              <div class="ms-3 bg-light p-2 rounded">
-                <i class="bi bi-trash3"></i>
-              </div>
+            <div class="col-3 col-md-3 text-end">
+              <h4 class="fw-bold">${{ item.quantity * item.price }}</h4>
             </div>
           </div>
-          <div class="col-3 col-md-3 text-end">
-            <h4 class="fw-bold">$100.00</h4>
-          </div>
-        </div>
-        <hr>
-  
-        <!-- Product 3 -->
-        <div class="row align-items-center my-3">
-          <div class="col-5 col-md-6 p-2">
-            <div class="row align-items-center">
-              <div class="col-4 col-md-3">
-                <img src="assets/images/JORDAN.svg" alt="" class="img-fluid image">
-              </div>
-              <div class="col-8 col-md-9">
-                <p class="fw-bold mb-1">Tatum 2 "Red Cement"</p>
-                <p class="text-muted mb-1">Size: 15</p>
-                <p class="fw-bold mb-0">$125</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-4 col-md-3">
-            <div class="d-flex align-items-center justify-content-between bg-light p-2" style="border-radius: 40px;">
-              <i class="bi bi-dash-circle"></i>
-              <p class="summer bg-dark-grey mb-0 mx-2">2</p>
-              <i class="bi bi-plus-circle"></i>
-              <div class="ms-3 bg-light p-2 rounded">
-                <i class="bi bi-trash3"></i>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 col-md-3 text-end">
-            <h4 class="fw-bold">$250.00</h4>
-          </div>
+          <hr>
         </div>
       </div>
-  
-      <!-- Nouvelle Section -->
+
+      <!-- Order Summary Section -->
       <div class="col-12 col-lg-3 col-md-6 mt-4 mt-md-0">
         <div class="p-3 bg-light rounded">
           <h4 class="fw-bold mb-3 archivo" style="font-weight: 600;">Order Summary</h4>
-          <p class="bg-dark-grey">Subtotal:  $524.00</p>
-          <p class="bg-dark-grey">Discount:  $00.00</p><hr>
-          <h5 class="font-weight-bold">Order Total:    $524.00</h5>
-          <button class="btn btn-dark mt-3 w-100">Checkout</button>
+          <p class="bg-dark-grey">Subtotal:  ${{ cartSubtotal }}</p>
+          <p class="bg-dark-grey">Discount:  ${{ discount }}</p><hr>
+          <h5 class="font-weight-bold">Order Total:    ${{ cartTotal }}</h5>
+          <button class="btn btn-dark mt-3 w-100" @click="proceedToCheckout">Checkout</button>
         </div>
       </div>
     </div>
   </div><br><br>
-  
   
   <footer class="text-light p-5">
     <div class="row p-3">
@@ -285,6 +227,60 @@
     </div>
     <div class="text-center ">© BALLAMAS 2024 by waris</div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+    const axios = window.axios;
+
+    const app = createApp({
+      data() {
+        return {
+          cartItems: JSON.parse(localStorage.getItem('cart')) || [],
+          cartSubtotal: 0,
+          discount: 0,
+          cartTotal: 0
+        };
+      },
+      methods: {
+        clearCart() {
+          localStorage.removeItem('cart');
+          this.cartItems = [];
+          this.calculateTotals();
+        },
+        decreaseQuantity(index) {
+          if (this.cartItems[index].quantity > 1) {
+            this.cartItems[index].quantity--;
+            this.saveCart();
+            this.calculateTotals();
+          }
+        },
+        increaseQuantity(index) {
+          this.cartItems[index].quantity++;
+          this.saveCart();
+          this.calculateTotals();
+        },
+        removeItem(index) {
+          this.cartItems.splice(index, 1);
+          this.saveCart();
+          this.calculateTotals();
+        },
+        saveCart() {
+          localStorage.setItem('cart', JSON.stringify(this.cartItems));
+        },
+        calculateTotals() {
+          this.cartSubtotal = this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+          this.cartTotal = this.cartSubtotal - this.discount;
+        },
+        proceedToCheckout() {
+          window.location.href = 'checkout_page.html';
+        }
+      },
+      mounted() {
+        this.calculateTotals();
+      }
+    });
+    app.mount('#cartApp');
+  </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

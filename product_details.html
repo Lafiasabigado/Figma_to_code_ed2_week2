@@ -64,15 +64,15 @@
       </div>
     </nav>
   </header><br><br><br>
-   <div class="container badrack-section">
+  <div id="app" class="container badrack-section">
     <div class="row">
         <div class="col-12 col-lg-6 col-md-6 col-sm-4">
-           <img src="assets/images/Jersey_Blue.svg" alt="" class="img-fluid product-img">
+           <img :src="product.image" alt="Product Image" class="img-fluid product-img">
         </div>
         <div class="col-12 col-lg-6 col-md-6 col-sm-4">
-            <h2 class="discover p-1" style="font-weight: 600;">Badacore Tshirt</h2>
-            <h3 class="discover p-1" style="font-weight: 600;">CAD $80 </h3>
-            <h4 class="p-1">Color:Green</h4>
+            <h2 class="discover p-1" style="font-weight: 600;">{{ product.name }}</h2>
+            <h3 class="discover p-1" style="font-weight: 600;">CAD ${{ product.price }} </h3>
+            <h4 class="p-1">Color: Green</h4>
             <div class="row p-1" style="transform: translateX(1.5%);">
                 <div class="m-2">
                 <button class="b-green"></button>
@@ -89,19 +89,19 @@
             </div>
             <h4 class="p-1">Size:</h4>
             <div class="row try">
-                <div class="col-3 col-lg-2  text-center">
+                <div class="col-3 col-lg-2 text-center">
                     <h4 class="shirt p-2 bg-dark" style="color: white;">XS</h4>
                 </div>
                 <div class="col-3 col-lg-2 text-center">
                     <h4 class="shirt p-2">S</h4>
                 </div>
-                <div class="col-3 col-lg-2  text-center">
+                <div class="col-3 col-lg-2 text-center">
                     <h4 class="shirt p-2">M</h4>
                 </div>
-                <div class="col-3 col-lg-2  text-center">
+                <div class="col-3 col-lg-2 text-center">
                     <h4 class="shirt p-2">L</h4>
                 </div>
-                <div class="col-3 col-lg-2  col-md-3  text-center">
+                <div class="col-3 col-lg-2 col-md-3 text-center">
                     <h4 class="shirt p-2">XL</h4>
                 </div>
             </div>
@@ -110,166 +110,202 @@
                   <button class="btn btn-dark btn-block shirt"><a href="checkout_page.html">BUY NOW</a></button>
                 </div>
                 <div class="col-5 p-2 m-2">
-                    <button class="btn btn-light btn-block shirt"><a href="cart_page.html">ADD TO CART</a></button>
+                  <button class="btn btn-light btn-block shirt" @click="addToCart(product)">Add to Cart</button>
                 </div>
             </div>
             <h4 class="discover p-1" style="font-weight: 500;">Description</h4>
-            <p class="bg-dark-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
-            libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
-            litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at 
-            turpis condimentum lobortis.
-            </p>
+            <p class="bg-dark-grey">{{ product.description }}</p>
         </div>
-    </div>
-   </div><br><br><br>
-   <div id="app">
-    <h3 class="container discover text-center" style="font-weight: 600;">You may also like</h3>
-    <div class="container">
-        <div class="row m-3">
-          <div class="col-12 col-md-6 col-lg-3 shirt-section" v-for="shirt in filteredShirts" :key="shirt.id" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
-            <a href=""><img :src="shirt.image" alt="" class="img-fluid p-2"></a>
-            <h4 class="summer" style="font-weight: 600;">{{ shirt.name }}</h4>
-            <h4 class="bg-dark-grey">{{ shirt.price }}</h4>
+    </div><br><br>
+    <h3 class="container text-center" style="font-weight: 600;">You may also like</h3><br>
+      <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+        <div class="col-12 col-md-6 col-lg-3 mb-4" v-for="product in additionalProducts" :key="product.id">
+          <div class="product-card" @mouseover="showButtons = true" @mouseleave="showButtons = false" @click="toggleButtons">
+            <div class="image-container">
+              <img :src="product.image" :alt="product.name" @click.prevent="redirectToProductDetails(product)" class="img-fluid shirt-section" />
+              <div class="buttons" v-if="showButtons || clicked">
+                <button class="btn btn-light btn-block shirt" @click="addToCart(product)">Add to Cart</button>
+                <button class="btn shirt-section btn-dark" @click="viewCart">View Cart</button>
+              </div>
+            </div>
+            <h3 class="mt-2">{{ product.name }}</h3>
+            <p>{{ product.price }} $</p>
           </div>
         </div>
+      </div>
     </div>
-   </div><br><br>
-  <footer class="text-light p-5">
-    <div class="row p-3">
-      <div class="col-12 col-lg-8 col-md-6 col-sm-4 p-2">
+  </div>
+</div><br><br>
+<footer class="text-light p-5">
+  <div class="row p-3">
+    <div class="col-12 col-lg-6 col-md-6 col-sm-4 p-2">
+      <div class="">
         <div class="">
+          <img src="assets/images/BALLAMAS (1).svg" alt="" class="img-fluid p-2">
+          <p class="subscribe p-2">Subscribe to our newsletter  for upcoming products and best discount for all items</p>
           <div class="">
-            <img src="assets/images/BALLAMAS (1).svg" alt="" class="img-fluid p-2">
-            <p class="subscribe p-2">Subscribe to our newsletter  for upcoming products and best discount for all items</p>
-            <div class="">
-              <div class="row">
-                <div class="form-group py-2">
-                  <input type="text" class="form-item email p-2" placeholder="Your email">
-                  <button class="btn bouton">Subscribe</button>
-                </div>
+            <div class="row">
+              <div class="form-group py-2">
+                <input type="text" class="form-item email p-2" placeholder="Your email">
+                <button class="btn bouton">Subscribe</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-4 col-md-6 col-sm-4 p-2">
-        <div class="row justify-content-end">
-          <div class="col-4">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link subscribe" style="color: white; font-weight: 600;" href="#">Product<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">Jacket</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">T-Shirt</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">Jacket</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">Shoes</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">Sunglasses</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-4">
-              <ul class="navbar-nav ">
-                <li class="nav-item active">
-                  <a class="nav-link subscribe" style="color: white; font-weight: 600;" href="#">Categories<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">Man</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">Woman</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">Kids</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">Gift</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">New arrival</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-4">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" style="color: white; font-weight: 600;" href="#">Our Social Media<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">Instagram</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">Facebook</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">You Tube</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link subscribe" href="#">X</a>
-                </li>
-              </ul>
+    </div>
+    <div class="col-12 col-lg-4 col-md-6 col-sm-4 p-2">
+      <div class="row justify-content-end">
+        <div class="col-4">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link subscribe" style="color: white; font-weight: 600;" href="#">Product<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">Jacket</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">T-Shirt</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">Jacket</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">Shoes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">Sunglasses</a>
+              </li>
+            </ul>
           </div>
+          <div class="col-4">
+            <ul class="navbar-nav ">
+              <li class="nav-item active">
+                <a class="nav-link subscribe" style="color: white; font-weight: 600;" href="#">Categories<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">Man</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">Woman</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">Kids</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">Gift</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">New arrival</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-4">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" style="color: white; font-weight: 600;" href="#">Our Social Media<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">Instagram</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">Facebook</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">You Tube</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link subscribe" href="#">X</a>
+              </li>
+            </ul>
         </div>
       </div>
     </div>
-    <div class="text-center ">© BALLAMAS 2024 by waris</div>
-  </footer>
-  <script>
-    const app = Vue.createApp({
+  </div>
+  <div class="text-center ">© BALLAMAS 2024 by waris</div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+    const axios = window.axios;
+
+    const app = createApp({
       data() {
         return {
-          selectedCategory: 'All',
-          categories: [
-            { name: 'All', count: 132 },
-            { name: 'Accessories', count: 13 },
-            { name: 'Featured', count: 67 },
-            { name: 'Unisex', count: 52 }
-          ],
-          shirts: [
-            { id: 1, name: 'SUMMER SHIRT', image: 'assets/images/shirt-image(2).svg', price: '$99', category: 'All' },
-            { id: 2, name: 'SUMMER SHIRT', image: 'assets/images/shirt-image(2).svg', price: '$99', category: 'All' },
-            { id: 3, name: 'SUMMER SHIRT', image: 'assets/images/shirt-image(2).svg', price: '$99', category: 'Featured' },
-            { id: 4, name: 'SUMMER SHIRT', image: 'assets/images/shirt-image(2).svg', price: '$99', category: 'Featured' },
-          ]
-        }
-      },
-      computed: {
-        filteredShirts() {
-          if (this.selectedCategory === 'All') {
-            return this.shirts;
-          }
-          return this.shirts.filter(shirt => shirt.category === this.selectedCategory);
-        }
+          product: {},
+          additionalProducts: [],
+          showButtons: false,
+          clicked: false
+        };
       },
       methods: {
-        selectCategory(category) {
-          this.selectedCategory = category;
+        fetchProductDetails() {
+          const urlParams = new URLSearchParams(window.location.search);
+          this.product = {
+            id: urlParams.get('id'),
+            name: urlParams.get('name'),
+            image: urlParams.get('image'),
+            price: urlParams.get('price'),
+            description: urlParams.get('description')
+          };
         },
-        loadmore() {
-          this.currentPage++;
-          this.updateDisplayedShirts();
+        async loadData() {
+          try {
+            const proxyUrl = 'https://corsproxy.io/?';
+            const productsResponse = await axios.get(proxyUrl + 'https://mock.shop/api?query=%7B%20products(first%3A%204)%20%7B%20edges%20%7B%20node%20%7B%20id%20title%20description%20featuredImage%20%7B%20url%20%7D%20priceRange%20%7B%20maxVariantPrice%20%7B%20amount%20%7D%20%7D%20%7D%20%7D%20%7D%7D');
+            const products = productsResponse.data.data.products;
+            if (products?.edges) {
+              this.additionalProducts = products.edges.map(edge => ({
+                id: edge.node.id,
+                name: edge.node.title,
+                image: edge.node.featuredImage?.url,
+                price: edge.node.priceRange?.maxVariantPrice?.amount,
+              }));
+            }
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
         },
+
+        addToCart(product) {
+          console.log('Adding to cart:', product); // Debugging line
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          const existingProduct = cart.find(item => item.id === product.id);
+          if (existingProduct) {
+          existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+          } else {
+          product.quantity = 1;
+          cart.push(product);
+         }
+    
+         localStorage.setItem('cart', JSON.stringify(cart));
+         window.location.href = 'cart_page.html'; // Redirect to cart page
+        },
+
+        viewCart(product) {
+          window.location.href = 'cart_page.html';
+        },
+        
+        toggleButtons() {
+          this.clicked = !this.clicked;
+        },
+        redirectToProductDetails(product) {
+          window.location.href = `product_details.html?id=${product.id}&name=${product.name}&image=${product.image}&price=${product.price}&description=${product.description}`;
+        }
+      },
+      mounted() {
+        this.fetchProductDetails();
+        this.loadData();
       }
     });
     app.mount('#app');
   </script>
- 
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+      AOS.init();
+  </script>
 </body>
 </html>
-  </body>

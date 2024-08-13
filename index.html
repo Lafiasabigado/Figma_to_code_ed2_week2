@@ -77,7 +77,7 @@
       </div>
       <div class="p-2">
         <div class="">
-          <button class="btn bouton"><a href="index.html">Start Shopping</a></button>
+          <button class="btn bouton" @click="startshopping">Start Shopping</button>
           <img src="assets/images/button.svg" class="img-fluid" alt="" style="transform: translateX(-13%);">
         </div>
       </div>
@@ -97,16 +97,25 @@
       </div>
     </div>
     <div class="container" >
-      <div class="row m-3">
-        <div class="col-12 col-md-6 col-lg-4 shirt-section" v-for="shirt in filteredShirts" :key="shirt.id" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
-          <a href="product_details.html"><img :src="shirt.image" alt="" class="img-fluid p-2"></a>
-          <h4 class="summer" style="font-weight: 600;">{{ shirt.name }}</h4>
-          <h4 class="bg-dark-grey">{{ shirt.price }}</h4>
+      <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+        <div class="col-12 col-md-6 col-lg-4 mb-4" v-for="shirt in filteredShirts" :key="shirt.id">
+          <div class="product-card" @mouseover="showButtons = true" @mouseleave="showButtons = false" @click="toggleButtons">
+            <div class="image-container">
+              <img :src="shirt.image" :alt="shirt.name" @click.prevent="redirectToProductDetails(shirt)" class="img-fluid shirt-section" />
+              <div class="buttons" v-if="showButtons || clicked">
+                <button class="btn btn-light btn-block shirt" @click="addToCart(shirt)">Add to Cart</button>
+                <button class="btn shirt-section btn-dark" @click="viewCart">View Cart</button>
+              </div>
+            </div>
+            <h3 class="mt-2">{{ shirt.name }}</h3>
+            <p>{{ shirt.price }} $</p>
+          </div>
         </div>
       </div>
+       
       <div class="text-center container">
-        <div class="view-more" @click="">
-          <a href="index.html"><p class="p-2 m-0">View More</p></a>
+        <div class="view-more" @click="viewmore">
+          <p class="p-2 m-0">View More</p>
         </div>
       </div>
     </div>
@@ -214,8 +223,13 @@
     </div>
     <div class="text-center ">© BALLAMAS 2024 by waris</div>
   </footer>
-  <script>
-    const app = Vue.createApp({
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+    const axios = window.axios;
+
+    const app = createApp({
       data() {
         return {
           selectedCategory: 'All',
@@ -225,14 +239,9 @@
             { name: 'Featured', count: 67 },
             { name: 'Unisex', count: 52 }
           ],
-          shirts: [
-            { id: 1, name: 'SUMMER SHIRT', image: 'assets/images/shirt-image.svg', price: '$99', category: 'All' },
-            { id: 2, name: 'SUMMER SHIRT', image: 'assets/images/shirt-image.svg', price: '$99', category: 'All' },
-            { id: 3, name: 'SUMMER SHIRT', image: 'assets/images/shirt-image(2).svg', price: '$99', category: 'Featured' },
-            { id: 4, name: 'SUMMER SHIRT', image: 'assets/images/shirt-image(2).svg', price: '$99', category: 'Featured' },
-            { id: 5, name: 'SUMMER SHIRT', image: 'assets/images/shirt-image(3).svg', price: '$99', category: 'Accessories' },
-            { id: 6, name: 'SUMMER SHIRT', image: 'assets/images/shirt-image(2).svg', price: '$99', category: 'Unisex' }
-          ]
+          shirts: [],
+          showButtons: false,
+          clicked: false,
         }
       },
       computed: {
@@ -240,23 +249,78 @@
           if (this.selectedCategory === 'All') {
             return this.shirts;
           }
-          return this.shirts.filter(shirt => shirt.category === this.selectedCategory);
+          return this.shirts.filter(shirt => shirt.category.includes(this.selectedCategory));
         }
       },
       methods: {
+        redirectToProductDetails(shirt) {
+          const queryString = new URLSearchParams(shirt).toString();
+          window.location.href = `product_details.html?${queryString}`;
+        },
         selectCategory(category) {
           this.selectedCategory = category;
         },
-        loadmore() {
-          this.currentPage++;
-          this.updateDisplayedShirts();
+        async loadData() {
+          try {
+            const proxyUrl = 'https://corsproxy.io/?';
+            const productsResponse = await axios.get(proxyUrl + 'https://mock.shop/api?query=%7B%20products(first%3A%206)%20%7B%20edges%20%7B%20node%20%7B%20id%20title%20description%20featuredImage%20%7B%20url%20%7D%20priceRange%20%7B%20maxVariantPrice%20%7B%20amount%20%7D%20%7D%20collections(first%3A%204)%20%7B%20edges%20%7B%20node%20%7B%20title%20%7D%20%7D%20%7D%20%7D%20%7D%20%7D%7D');
+            console.log('API Response:', productsResponse.data);
+            const products = productsResponse.data.data.products;
+            if (products?.edges) {
+              this.shirts = products.edges.map(edge => ({
+                id: edge.node.id,
+                name: edge.node.title,
+                image: edge.node.featuredImage?.url,
+                price: edge.node.priceRange?.maxVariantPrice?.amount,
+                category: edge.node.collections.edges.map(c => c.node.title),
+                description : edge.node.description
+              }));
+            }
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
         },
-        
+        addToCart(shirt) {
+        console.log('Adding to cart:', shirt); 
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProduct = cart.find(item => item.id === shirt.id);
+        if (existingProduct) {
+        existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+        } else {
+        shirt.quantity = 1;
+        cart.push(shirt);
+        }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = 'cart_page.html'; // Redirect to cart page
+    },
+
+        viewCart() {
+          window.location.href = 'cart_page.html';
+        },
+
+        viewmore(){
+          window.location.href = 'index.html';
+        },
+
+        startshopping(){
+          window.location.href = 'index.html';
+        },
+
+        toggleButtons(shirt) {
+          this.clicked = !this.clicked;
+        }
+      },
+      mounted() {
+        this.loadData();
+        AOS.init();
       }
     });
     app.mount('#app');
-    
-  </script>
+</script>
+
+
+
  
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
