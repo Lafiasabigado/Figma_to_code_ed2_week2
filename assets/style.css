@@ -220,10 +220,14 @@ footer{
 .custom-radio .custom-control-input:checked ~ .custom-control-label::before {
   transform: scale(2.0);
   background-color: black;
+  position: absolute;
+  transform: translateY(20px);
 }
 
 .custom-radio .custom-control-label::before {
   transform: scale(2.0); 
+  position: absolute;
+  transform: translateY(20px);
 }
 
 input {
