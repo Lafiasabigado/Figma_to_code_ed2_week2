@@ -25,7 +25,7 @@
           <a class="nav-link" href="#"><i class="bi bi-search text-dark"></i></a>
           <a class="nav-link d-lg-none" href="cart_page.html"><i class="text-dark bi bi-basket3"></i></a>
         </div>
-        <div class="collapse navbar-collapse justify-content-between text-md-center" id="navbarTogglerDemo02">
+        <div class="collapse navbar-collapse justify-content-between text-center" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="index.html">Men <span class="sr-only">(current)</span></a>
@@ -110,7 +110,7 @@
                   <button class="btn btn-dark btn-block shirt"><a href="checkout_page.html">BUY NOW</a></button>
                 </div>
                 <div class="col-5 p-2 m-2">
-                  <button class="btn btn-light btn-block shirt" @click="addToCart(product)">Add to Cart</button>
+                  <button class="btn btn-light btn-block shirt" @click="addToCart(product)">ADD TO CART</button>
                 </div>
             </div>
             <h4 class="discover p-1" style="font-weight: 500;">Description</h4>
@@ -124,8 +124,8 @@
             <div class="image-container">
               <img :src="product.image" :alt="product.name" @click.prevent="redirectToProductDetails(product)" class="img-fluid shirt-section" />
               <div class="buttons" v-if="showButtons || clicked">
-                <button class="btn btn-light btn-block shirt" @click="addToCart(product)">Add to Cart</button>
-                <button class="btn shirt-section btn-dark" @click="viewCart">View Cart</button>
+                <button class="btn btn-light btn-block shirt" @click="addToCart(product)">ADD TO CART</button>
+                <button class="btn shirt-section btn-dark" @click="buyNow">BUY NOW</button>
               </div>
             </div>
             <h3 class="mt-2">{{ product.name }}</h3>
@@ -282,8 +282,8 @@
          window.location.href = 'cart_page.html'; // Redirect to cart page
         },
 
-        viewCart(product) {
-          window.location.href = 'cart_page.html';
+        buyNow(product) {
+          window.location.href = 'checkout_page.html';
         },
         
         toggleButtons() {

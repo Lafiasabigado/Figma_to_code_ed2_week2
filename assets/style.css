@@ -38,12 +38,27 @@ body {
   background-color: white;
 }
 
-.bring-section {
-  border-radius: 30px;
-  background-size: cover; 
-  background-position: center;
-  background-repeat: no-repeat; 
-  padding: 50px;
+@media (min-width:768px) {
+  .bring-section {
+    border-radius: 30px;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    padding: 50px;
+  }
+}
+
+
+@media (max-width:768px) {
+  .bring-section {
+    border-radius: 30px;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    padding: 30px;
+    margin: 20px auto; 
+    max-width: calc(100% - 40px);
+  }
 }
 
 .discover {
